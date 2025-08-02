@@ -1,18 +1,12 @@
-const express = require('express');
+import express from 'express';
+import { getProducts, addProduct } from '../controllers/productController.js';
+
 const router = express.Router();
-const Product = require('../models/Product');
 
-// here you get all products
-router.get('/', async (req, res) => {
-  const products = await Product.find();
-  res.json(products);
-});
+router.get('/', getProducts);   // GET all products
+router.post('/', addProduct);   // POST new product
 
-// suga this is for add new product
-router.post('/', async (req, res) => {
-  const newProduct = new Product(req.body);
-  await newProduct.save();
-  res.status(201).json(newProduct);
-});
 
+
+export default router;
 module.exports = router;
