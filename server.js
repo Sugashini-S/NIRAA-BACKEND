@@ -2,7 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+
 import productRoutes from './routes/productRoutes.js';
+import authRoutes from './routes/authRoutes.js'; // ✅ Added
 
 dotenv.config();
 
@@ -18,9 +20,11 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("MongoDB connected ✅"))
 .catch((err) => console.error("MongoDB error ❌", err));
 
-// API routes
+// Routes
 app.use('/api/products', productRoutes);
+app.use('/api/auth', authRoutes); // ✅ Added auth route
 
+// Root route
 app.get('/', (req, res) => {
   res.send('💅 NIRAA Backend is Live!');
 });
