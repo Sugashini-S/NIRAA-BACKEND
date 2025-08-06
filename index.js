@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const Product = require('./models/product'); // ✅ Import model
 
 dotenv.config(); // Load .env file
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
